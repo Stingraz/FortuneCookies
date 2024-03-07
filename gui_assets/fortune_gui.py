@@ -20,7 +20,6 @@ import tkinter as tk
 import customtkinter as ctk
 from PIL import Image, ImageTk
 from Markov_fortune_generator import generate_fortune 
-#from lstm_fortune_generator import generate_sentence
 
 # --------------- Create and configure the main app window ------------------ #
 
@@ -28,7 +27,7 @@ from Markov_fortune_generator import generate_fortune
 app = tk.Toplevel()
 app.title("The Cookie Oracle")
 app.geometry("1116x697")
-app.iconbitmap("cookie_icon.ico")  # Sets the icon for the upper left corner and taskbar
+app.iconbitmap("gui_assets/cookie_icon.ico")  # Sets the icon for the upper left corner and taskbar
 
 # Set the app and component colors:
 ctk.set_appearance_mode("dark")  # "system", "light", "dark"
@@ -46,7 +45,7 @@ app.grid_rowconfigure(2, weight=0)
 app.grid_rowconfigure(3, weight=1)  # Row 3 will be twice as tall as the others
 app.grid_rowconfigure(4, weight=0)  
 
-background_image = PhotoImage(file="mountain_temple_1.png")
+background_image = PhotoImage(file="gui_assets/mountain_temple_1.png")
 # Show image using label 
 background_label = ctk.CTkLabel(app, text="", image=background_image) 
 background_label.place(x=0, y=0, relwidth=1, relheight=1) # Must use place for background, so you can put other stuff overtop
@@ -163,7 +162,7 @@ def generate_new_fortune():
     try:
         fortune = generate_fortune(state_size)
         fortune_label.configure(text=fortune)
-        background_image_new = PhotoImage(file="mountain_temple_2.png")
+        background_image_new = PhotoImage(file="gui_assets/mountain_temple_2.png")
         background_label.configure(image=background_image_new)
         background_label.image = background_image_new  # Keep a reference to prevent garbage collection
     
@@ -176,7 +175,7 @@ cookie_frame.grid(row=2, column=0, padx=10, pady=(10,10), sticky="ew")
 cookie_frame.grid_remove()  # Hide the frame initially
 
 # Load the paper image file for the cookie fortune shaped button
-pil_image = Image.open("cookie_button.png")
+pil_image = Image.open("gui_assets/cookie_button.png")
 tk_image = ImageTk.PhotoImage(pil_image) # Convert to tk image format so tkinter can use it
 
 # Create a label to display the image inside the frame

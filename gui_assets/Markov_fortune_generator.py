@@ -61,14 +61,7 @@ except LookupError:
     # If not found, download punkt
     nltk.download('punkt')
     
-# ------------------- Set local paths and model parameters ------------------ #
-
-# Specify folder path for Markov_Chains project on local machine:
-#Markov_Chains_folder_path = r"C:\Users\micha\Documents\School_Stuff\IIS\Sem_3\NLP\Project\Markov_Chains"
-
-
-# Specify the path to the directory in local machine where dataset is located:
-#dataset_folder_path = r"C:\Users\micha\Documents\School_Stuff\IIS\Sem_3\NLP\Project\Datasets"
+# ---------------------------- Set model parameters -------------------------- #
 
 # Set markovify model parameters:
 state_size = 1
@@ -218,7 +211,7 @@ def evaluate_generated_fortunes(filtered_fortunes, training_fortunes):
     
 def generate_fortune(state_size):
     # Load the trained Markov model from the saved file
-    with open(os.path.join("..", "pretrained_models",f"trained_markov_model-state_size_{state_size}.pkl"), "rb") as f:
+    with open(os.path.join("pretrained_models", f"trained_markov_model-state_size_{state_size}.pkl"), "rb") as f:
         text_model = pickle.load(f)
         
     # Generate a single fortune
@@ -238,7 +231,7 @@ def main():
     # -------------------------------- Load data -------------------------------- #
     
     # Open the original combined_fortunes dataset
-    training_fortunes_path = os.path.join("..", "datasets", 'combined_fortunes-4632.csv')
+    training_fortunes_path = os.path.join("datasets", 'combined_fortunes-4632.csv')
     
     # Set the original dataset as the training fortunes list for the first round
     with open(training_fortunes_path, 'r') as file:
@@ -349,7 +342,7 @@ def main():
     
     
     # Save the final text_model to be used by the fortune_gui.py program:
-    with open(os.path.join("..", "pretrained_models",f"trained_markov_model-state_size_{state_size}.pkl"), "wb") as f:
+    with open(os.path.join("pretrained_models",f"trained_markov_model-state_size_{state_size}.pkl"), "wb") as f:
         pickle.dump(text_model, f)
     
     
