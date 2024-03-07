@@ -9,6 +9,6 @@ evaluation: contains all scripts needed to calculate evaluation metrics for the 
 pre-trained models: contains all pre-trained models with a generate fortune function
 results: contains the results from the evaluation as csv files
 
-##GUI
+## GUI
 
 The Markov model is fully integrated, and generates new fortunes upon each request, further customizable by the state size.
