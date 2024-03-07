@@ -137,14 +137,9 @@ def select_model(value):
     fortune_label.configure(text="")
     background_label.configure(image=background_image)
     background_label.image = background_image  # Keep a reference to prevent garbage collection
+    
     # Show the cookie frame if a radio button is selected
     cookie_frame.grid(row=2, column=0, padx=10, pady=(10,10)) #, sticky="ew")
-    
-    # Show the fortune topic frame if LSTM is selected, hide it otherwise
-    #if value == "LSTM":
-    #    topic_frame.grid(row=1, column=0, padx=100, pady=(10,10)) #, sticky="ew")
-    #else:
-    #    topic_frame.grid_remove()
     
     # Show the slider frame if Markov Chains is selected, hide it otherwise
     if value == "Markov Chains":
@@ -157,51 +152,16 @@ radiobutton_1 = ctk.CTkRadioButton(model_frame, text="Markov Chains", variable=s
                                              command=lambda: select_model("Markov Chains"))
 radiobutton_1.grid(row=1, column=0, sticky="w")
 
-radiobutton_2 = ctk.CTkRadioButton(model_frame, text="Word n-grams", variable=selected_model, value="Word n-grams", 
-                                             command=lambda: select_model("Word n-grams"))
+radiobutton_2 = ctk.CTkRadioButton(model_frame, text="Placeholder", variable=selected_model, value="Placeholder", 
+                                             command=lambda: select_model("Placeholder"))
 radiobutton_2.grid(row=2, column=0, sticky="w")
-
-radiobutton_3 = ctk.CTkRadioButton(model_frame, text="LSTM", variable=selected_model, value="LSTM", 
-                                             command=lambda: select_model("LSTM"))
-radiobutton_3.grid(row=3, column=0, sticky="w")
-
-radiobutton_4 = ctk.CTkRadioButton(model_frame, text="RNN", variable=selected_model, value="RNN", 
-                                             command=lambda: select_model("RNN"))
-radiobutton_4.grid(row=4, column=0, sticky="w")
-
-radiobutton_5 = ctk.CTkRadioButton(model_frame, text="GPT-2", variable=selected_model, value="GPT-2", 
-                                             command=lambda: select_model("GPT-2"))
-radiobutton_5.grid(row=5, column=0, sticky="w")
 
 
 # -------- Create and configure the button to generate a new fortune -------- #
 
-def generate_new_fortune():
-    """elif selected_model.get() == "LSTM":
-            # Get the selected topic from the LSTM combobox (dropdown)
-            seed_word = entered_topic.get()
-            fortune = generate_sentence(model_path='pretrained_models/lstmTextGeneration.pkl', 
-                                        char_index_path='pretrained_models/char_index.pkl', 
-                                        seed_word=seed_word, temperature=1.0, SEQLEN=20)"""    
+def generate_new_fortune():  
     try:
-        if selected_model.get() == "Markov Chains":
-            fortune = generate_fortune(state_size)
-        elif selected_model.get() == "Word n-grams":
-            generated_fortunes = pd.read_csv(os.path.join('..', 'datasets', 'n-gram_generated_fortunes_100.csv'))
-            fortune = random.choice(generated_fortunes['fortunes'])
-        elif selected_model.get() == "GPT-2":
-            generated_fortunes = pd.read_csv(os.path.join('..', 'datasets', 'GPT2_generated_fortunes_100-modular-early-stopping.csv'))
-            fortune = random.choice(generated_fortunes['fortunes'])
-        elif selected_model.get() == "LSTM":
-            generated_fortunes = pd.read_csv(os.path.join('..', 'datasets', 'lstm_generated_fortunes_100.csv'))
-            fortune = random.choice(generated_fortunes['fortunes'])
-        elif selected_model.get() == "RNN":
-            generated_fortunes = pd.read_csv(os.path.join('..', 'datasets', 'rnn_generated_fortunes_100.csv.csv'))
-            fortune = random.choice(generated_fortunes['fortunes'])
-        else:
-            # Handle other model types if needed
-            fortune = "Please select a model type first"
-            
+        fortune = generate_fortune(state_size)
         fortune_label.configure(text=fortune)
         background_image_new = PhotoImage(file="mountain_temple_2.png")
         background_label.configure(image=background_image_new)

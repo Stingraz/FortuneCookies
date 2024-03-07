@@ -12,11 +12,7 @@ from evaluation.perplexity import calculate_dataset_perplexity
 
 def read_datasets():
     datasets = {
-        'GPT2': pd.read_csv(os.path.join('..', 'datasets', 'GPT2_generated_fortunes_100-modular-early-stopping.csv')),
-        'Markov': pd.read_csv(os.path.join('..', 'datasets', 'Markov_generated_fortunes_100.csv')),
-        'n-gram': pd.read_csv(os.path.join('..', 'datasets', 'n-gram_generated_fortunes_100.csv')),
-        'lstm': pd.read_csv(os.path.join('..', 'datasets', 'lstm_generated_fortunes_100.csv')),
-        'rnn': pd.read_csv(os.path.join('..', 'datasets', 'rnn_generated_fortunes_100.csv.csv'))
+        'Markov': pd.read_csv(os.path.join('..', 'datasets', 'Markov_generated_fortunes_100.csv'))
     }
     return datasets
 
